@@ -4,6 +4,8 @@
 
 _Learn programming, algorithms and data structures using the Go programming language_
 
+<img src="https://github.com/yackx/ipgo/content/cover.png" width="510">
+
 ## License
 
 Licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0).
