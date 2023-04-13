@@ -6,8 +6,8 @@ pdf:
 	@echo 'Pandoc md to PDF'
 	@docker run -v `pwd`:/data $(DOCKER_IMAGE) pandoc \
 	    -N --variable version=2.1 \
-		--defaults=pdf.yaml \
-		--defaults=input-files.yaml \
+		--defaults=templates/pdf.yaml \
+		--defaults=templates/input-files.yaml \
 		--listings \
 		-o build/ipgo.pdf
 
@@ -15,8 +15,8 @@ epub:
 	@echo 'Pandoc md to epub'
 	@docker run -v `pwd`:/data $(DOCKER_IMAGE) pandoc \
 	    -N --variable version=2.1 \
-		--defaults=epub.yaml \
-		--defaults=input-files.yaml \
+		--defaults=templates/epub.yaml \
+		--defaults=templates/input-files.yaml \
 		--listings \
 		-o build/ipgo.epub
 

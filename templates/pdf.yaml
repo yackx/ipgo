@@ -4,9 +4,9 @@ pdf-engine: xelatex
 output-file: ipgo.pdf
 
 metadata-files:
-- meta-common.yaml
-- meta-pdf.yaml
+- templates/meta-common.yaml
+- templates/meta-pdf.yaml
 
 table-of-contents: true
 toc-depth: 2
-template: eisvogel.tex
+template: templates/eisvogel.tex

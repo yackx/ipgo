@@ -5,7 +5,7 @@ output-file: ipgo.epub
 epub-cover-image: "content/cover.png"
 
 metadata-files:
-- meta-common.yaml
+- templates/meta-common.yaml
 
 table-of-contents: true
 toc-depth: 2
