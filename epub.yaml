@@ -1,0 +1,11 @@
+from: markdown+multiline_tables
+to: epub
+output-file: ipgo.epub
+
+epub-cover-image: "content/cover.png"
+
+metadata-files:
+- meta-common.yaml
+
+table-of-contents: true
+toc-depth: 2

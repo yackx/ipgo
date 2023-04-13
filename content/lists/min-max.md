@@ -1,0 +1,34 @@
+## Min and max
+
+Finding the maximum of slice is a form of filter, that yields a single element. In order to find the greatest element of a slice, we first initialize the `max` as the first element of the slice.
+
+```
+12   34   6   13
+^^
+max == 12
+```
+
+Then, we iterate the slice. We compare each element we encounter with `max`. If the element is greater, it becomes the new `max`. Otherwise, we keep the current max… by doing nothing.
+
+```go
+func maxInt(values []int) int {
+	max := values[0]
+	for _, i := range values {
+		if i > max {
+			max = i
+		}
+	}
+	return max
+}
+```
+
+Let’s call this function:
+
+```go
+func main() {
+	a := []int{12, 34, 6, 13}
+	fmt.Println(maxInt(a))
+}
+```
+
+The output is of course `34`. The same logic can be applied to find the smallest element.

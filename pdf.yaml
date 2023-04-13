@@ -1,0 +1,12 @@
+from: markdown+multiline_tables
+to: pdf
+pdf-engine: xelatex
+output-file: ipgo.pdf
+
+metadata-files:
+- meta-common.yaml
+- meta-pdf.yaml
+
+table-of-contents: true
+toc-depth: 2
+template: eisvogel.tex
