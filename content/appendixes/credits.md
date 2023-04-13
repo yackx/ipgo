@@ -1,6 +1,8 @@
 \newpage
 # Appendix B - Credits
 
+* [Eisvogel pandoc LaTeX template](https://github.com/Wandmalfarbe/pandoc-latex-template), copyright 2017 - 2020, Pascal Wagler, copyright 2014 - 2020, John MacFarlane
+
 * Hard drive, Wikipedia, licensed under CC BY-SA 3.0.
 
 * [Gopher mascot](https://github.com/golang-samples/gopher-vector) by [Takuya Ueda](https://twitter.com/tenntenn), licensed under the Creative Commons 3.0 Attributions license.
