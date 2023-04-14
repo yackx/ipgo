@@ -1,5 +1,5 @@
 \newpage
-# Appendix B - Credits
+## Credits
 
 * [Eisvogel pandoc LaTeX template](https://github.com/Wandmalfarbe/pandoc-latex-template), copyright 2017 - 2020, Pascal Wagler, copyright 2014 - 2020, John MacFarlane
 

@@ -1,13 +1,13 @@
 \newpage
-# Appendix A - Install and run
+## Install and run
 
-## Go playground
+### Go playground
 
 For the impatient, or when you are working from a computer where Go has not been installed, the Go Playground allows you to run code in the browser.
 
 https://play.golang.org/
 
-## Install
+### Install
 
 Go to the installation page and follow the instructions.
 
@@ -17,7 +17,7 @@ On macOS, consider using Homebrew.
 
 https://formulae.brew.sh/formula/go
 
-## Edit
+### Edit
 
 For this book, any decent editor will do.
 
@@ -25,7 +25,7 @@ Visual Studio Code is recommanded on all platforms.
 
 https://code.visualstudio.com/
 
-## Run
+### Run
 
 ```go
 // cat main.go
@@ -47,7 +47,7 @@ Run with `go run`:
 $ go run main.go
 Hello, world!
 ```
-## Modules
+### Modules
 
 In some chapters, we make the code more modular by using modules.
 

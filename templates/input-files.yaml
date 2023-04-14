@@ -51,5 +51,7 @@ input-file:
     - content/classic/conway/conway.md
     - content/classic/hanoi/hanoi.md
     - content/classic/blackjack/blackjack.md
+    - content/appendixes/index.md
     - content/appendixes/install.md
     - content/appendixes/credits.md
+    - content/appendixes/license.md
