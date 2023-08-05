@@ -4,7 +4,7 @@ default: pdf
 
 pdf:
 	@echo 'Pandoc md to PDF'
-	@docker run -v `pwd`:/data $(DOCKER_IMAGE) pandoc \
+	@docker run -v "`pwd`":/data $(DOCKER_IMAGE) pandoc \
 	    -N --variable version=2.1 \
 		--defaults=templates/pdf.yaml \
 		--defaults=templates/input-files.yaml \
@@ -13,7 +13,7 @@ pdf:
 
 epub:
 	@echo 'Pandoc md to epub'
-	@docker run -v `pwd`:/data $(DOCKER_IMAGE) pandoc \
+	@docker run -v "`pwd`"":/data $(DOCKER_IMAGE) pandoc \
 	    -N --variable version=2.1 \
 		--defaults=templates/epub.yaml \
 		--defaults=templates/input-files.yaml \
