@@ -17,7 +17,7 @@ Notice the indent, as it is not accidental. The `action1` and `action2` will onl
 
 What would our `condition` actually be? We could for instance check that “a is geater than 10”, expressed as `if a > 10`.
 
-You can have any number of instructions in the “if” and in the “else” block. Let’s see an example in Go:
+There can be any number of instructions in the “if” and in the “else” block. Let’s see an example in Go:
 
 ```go
 a := 10
@@ -29,7 +29,7 @@ if isDivisible(a, b) {
 }
 ```
 
-Provided some `isDivisible()` function we haven’t defined here, the program would display “10 is divisible by 5” if 10 is actually divisible by 5 (which it is). The part of the program displaying “10 is not divisible by 5” would never be executed.
+Provided the `isDivisible()` function is defined, the program would display “10 is divisible by 5” if 10 is actually divisible by 5 (which it is). The part of the program displaying “10 is not divisible by 5” would never be executed.
 
 Go uses curly braces `{` and `}` to define a block of actions. In this case, each block contains a single statement that prints a message.
 
@@ -48,7 +48,7 @@ pour coffee
 drink coffee
 ```
 
-In this example, we will pour the cofee and drink it whether we have some left in the first place. The condition `if no coffee` applies to the block represented by the 3 instructions below it, **indented**. So we will exit house, buy coffee and enter the house only if there is no coffee left. The two last actions *pour coffee* and *drink coffee* are outside the “if” block.
+In this example, we will pour the cofee and drink it whether we have some left in the first place. The condition `if no coffee` applies to the block represented by the 3 instructions below it, **indented**. So we will exit house, buy coffee and enter the house only _if_ there is no coffee left. The two last actions *pour coffee* and *drink coffee* are outside the “if” block.
 
 Coffee is easy. Let’s combine it with bread.
 
@@ -60,13 +60,13 @@ if no bread or no coffee:
     if no cofee:
         buy cofee
     enter house
-slide bread
+slice bread
 pour coffee
 eat bread
 drink coffee
 ```
 
-Several blocks can be constructed. Copy-paste the following code in the [Go Playground](https://play.golang.org/) and run it with different values for `a` to get different output.
+Several blocks can be constructed. Copy the following code in the [Go Playground](https://play.golang.org/) and run it with different values for `a` to get different output.
 
 ```go
 a := 10
@@ -92,6 +92,8 @@ if a < 0 {
 }
 ```
 
+Again, experiment with different values of `a`.
+
 ### Example - bakery
 
 Let’s see a variation of the coffee examples.
@@ -110,21 +112,21 @@ if bread:
     eat bread
 ```
 
-In this fictive example, we have two “big” chuncks: one where there is no bread, and one where there is.
+In this fictive example, we have two “main” chuncks: one where there is no bread, and one where there is.
 
-If there is no bread, we exit the house and start searching for a bakery. We have put a limit of 10 minutes on the “search bakery” action, expressed casually with a “*while*” loop, so that we do not end up roaming the streets endlessly. This means we may not have found a bakery after the time is up. Therefore, we put a condition “bakery found” on the “buy bread” action.
+In the first part, if there is no bread, we exit the house and start searching for a bakery. We have put a limit of 10 minutes on the “search bakery” action, expressed with a “*while*” loop, so that we do not end up roaming the streets endlessly -- because we may not have found a bakery after the time is up. Therefore, we put a condition “bakery found” on the “buy bread” action.
 
 If we omitted this condition, and if there was no bakery found after 10 minutes, our program would attempt to buy bread out of thin air, and would *terminate abnormally*, a.k.a. it would crash to say things colloquially.
 
-In any case, bakery found and bread found or not, we return to our house afterwards.
+In any case, bakery found and bread found or not, we return to the house afterwards.
 
-The second part is were there is bread, in which case we slice it and eat it. This can happen in two cases:
+The second part handles the case where there is bread, in which case we slice it and eat it. This can happen in two cases:
 
 * Either we have bread from the beginning. We did not have to step out of the house, search and buy bread.
 * Or we had no bread upfront, we went out, found the bakery and bought the bread.
 
-There is one case were we don’t slide and eat the bread: if we did not have any bread to start with, went out, did not find a bakery, and returned home wihtout bread.
+There is one case where we don’t slice and eat the bread: if we did not have any bread to start with, went out, did not find a bakery, and returned home without bread.
 
-That’s it! We have covered explored all the cases, and hopefully we don’t run the streets forever, we don’t try to buy bread out of nowhere and we don’t try to slice bread we don’t have. Failing to cover any of these cases would result in a **program failure**.
+That’s it! We have covered all the cases, and hopefully we don’t run the streets forever, we don’t try to buy bread out of non-existing bakery and we don’t try to slice bread we don’t have. Failing to cover any of these cases would result in a **program failure**.
 
-Note: we intentionnally left the case where there is no bread in the bakery. It is a valid assumption for this illustration, as we are free to state that a bakery will always have bread in store. In real-life, you would have to take care of that case too.
+Note: we intentionally left the case where there is no bread in the bakery. It is a valid assumption for this illustration, as we are free to state that a bakery will always have bread in store. In real-life, you would have to take care of that case too.

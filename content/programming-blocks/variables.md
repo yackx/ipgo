@@ -14,7 +14,7 @@ Which would result in:
 * The variable `h` contains the string of characters `'hello'`
 * The variable `a` contains the value `1`
 * The variable `b` contains the value `2`
-* The variable `score` is the sum of `a`, `b` and `4`, that is `7`.
+* The variable `score` is the sum of `a+b+4`, that is `7`.
 
 Or visually:
 
@@ -27,7 +27,7 @@ Or visually:
 \node (a) [draw, rectangle, right of=a_label] {1};
 \node (b_label) [right=2cm of h_label] {$b$};
 \node (b) [draw, rectangle, right of=b_label] {2};
-\node (score_label) [right=2cm of a_label] {$b$};
+\node (score_label) [right=2cm of a_label] {$score$};
 \node (score) [draw, rectangle, right of=score_label] {7};
 \end{tikzpicture}
 \end{center}
@@ -48,15 +48,15 @@ Notice the `:=` operator to assign a value to a variable.
 
 Assigning variables does not do much. If you were to enter this code snippet in the program main method, the program would execute but nothing would be displayed. Go ahead and try it in the [Go Playground](https://play.golang.org/).
 
-Play with this small program and try to add `"hello"` and `2`. You will get an error message, as one can of course only perform additions on numbers.
+Experiment with this small program and try to add `"hello"` and `2`. You will get an error message, as one can of course only perform additions on numbers.
 
-Of course, we can print the results. We can modify our program so that it displays the sum of three numbers.
+Of course, we can print the results. We can modify the program so that it displays the sum of three numbers.
 
 ```go
 fmt.Println(sum)
 ```
 
-Our modified program would unsurprisingly produce the following output:
+The modified program would unsurprisingly produce the following output:
 
 ```
 7.5

@@ -17,7 +17,7 @@ func main() {
 }
 ```
 
-You can see we are repeating ourselves. Instead of writing the same formula `a*a + b*b` over and over again, we could write a **function**. We have already used functions, namely the one called `main`. It is easy to create our own. We shall call it `sumOfSquares`:
+Observe that we are repeating ourselves. Instead of writing the same formula `a*a + b*b` over and over again, we could write a reusable **function**. We have already used functions, namely the one called `main`. It is easy to create our own. We shall call it `sumOfSquares`:
 
 ```go
 func sumOfSquares(a, b int) int {
@@ -45,4 +45,4 @@ With a predictable result:
 41
 ```
 
-Our function `sumOfSquares` is reusable. Our `main` methods nately calls twice, hiding the calculation details and providing a higher level of abstraction.
+Our function `sumOfSquares` is reusable. Our `main` methods neately calls it twice, hiding the calculation details, promoting reusability and providing a higher level of abstraction.

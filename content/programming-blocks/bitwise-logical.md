@@ -13,6 +13,8 @@ Before we work with numbers, let’s first work on single bits. Let’s have two
 
 ### Tables of truth
 
+We can create a _table of truth_ that covers all combinations of `p` and `q`.
+
 |  p  |  q  | p & q | p \| q | p ^ q | p &^ q |
 |-----|-----|-------|--------|-------|--------|
 |  0  |  0  |   0   |  0     |   0   |   0    |
@@ -76,7 +78,7 @@ Bitwise AND NOT will keep bits that are “1” for the first bit and “0” fo
 >>   right shift            integer >> unsigned integer
 ```
 
-This is simply a matter of moving bits to the left (`<<`) or to the right (`>>`) as specified number of times.
+Shifting is simply a matter of moving bits to the left (`<<`) or to the right (`>>`) a number of times.
 
 `5<<2` means:
 
@@ -92,7 +94,7 @@ This is simply a matter of moving bits to the left (`<<`) or to the right (`>>`)
 
 Attempting to shift a negative number of times results in an error.
 
-An interresting property of shifting `<<1` is that it multiplies the original value by 2. Conversly, `>>1` divides by 2.
+An interresting property of shifting `<<1` is that it multiplies the original value by 2. Conversely, `>>1` divides by 2.
 
 ### Exercises
 

@@ -2,7 +2,7 @@
 
 ### Examples
 
-An intuitive way to start programming is to have a look at expressions. `"Hello, world!"` we used in our first program is an expression. `42` is another one. `3+4` a third. The basic arithmetic operations can be performed with `+`, `-`, `\*` and `/`. You can perform complex operations, with parenthesis if you need. The `*` and `/` operators take precedence over `+` and `-`.
+An intuitive way to start programming is to have a look at expressions. `"Hello, world!"` was used in our first program is an expression. `42` is another one. `3+4` a third. The basic arithmetic operations can be performed with `+`, `-`, `\*` and `/`. You can perform complex operations, with parenthesis if you need. The `*` and `/` operators take precedence over `+` and `-`.
 
 We can go further. All of the following are expressions:
 
@@ -10,11 +10,6 @@ We can go further. All of the following are expressions:
 sumOfSquare(2, 3)
 sumOfSquare(2 * 4, 3 * 2)
 sumOfSquare(sumOfSquare(2, 3), 3 * 2)
-```
-
-```
-7 + 2
-42
 ```
 
 ### Definitions
@@ -43,14 +38,7 @@ Unary operator:
 
 ### Evaluation
 
-Let’s take a non trivial yet simple case and evaluate `3+4`. The expression is evaluated to `7` after the following steps:
-
-```
-3 + 4
-7
-```
-
-Our `sumOfSquare` with two integers will be evaluated as follows:
+Let’s take a non trivial yet simple case and evaluate `sumOfSquare`.
 
 ```
 sumOfSquare(2, 3)
@@ -73,15 +61,13 @@ sumOfSquare(8, 6)
 100
 ```
 
-Expression evaluation will come in handy at a later stage, when we examine the complexity of an algorithm.
-
 ### Boolean expressions
 
 A Boolean expression is **a logical statement that is either true or false**.
 
 The expression `3 < 5` is evaluated as `true` while `2 < 0` is evaluated as `false`. You can assign a boolean expression to a variable, for instance `a = 3 < 5`. In that case, `a` will be evaluated to `true`.
 
-You can test two values for equality with `==` as in `3 == 3` which of course is `true`. The double equal is used to avoid confusion with a variable assignment, as in `a = 3`. Which can be confusing in itself. Actually, most languages use `==` to perform equality comparisons, for historical reasons. If you want to check that two expressions are different, as in "\neq", you would use `!=`, like so: `3 != 5` which evaluates to `true` as 3 is not equal to 5.
+You can test two values for equality with `==` as in `3 == 3` (which of course is `true`). The double equal is used to avoid confusion with a variable assignment, as in `a = 3`. Which can be confusing in itself. Many languages use `==` to perform equality comparisons. If you want to check that two expressions are different, as in "\neq", you would use `!=`, like so: `3 != 5` which evaluates to `true` as 3 is not equal to 5.
 
 --------------------------------------
 Math       Go       Meaning
@@ -98,21 +84,3 @@ Math       Go       Meaning
 
 \neq       ``!=``   Not equal 
 --------------------------------------
-
-Although it would be pretty useless, for illustration purpose, we can write a function `isGreaterThan` that checks if its first argument is greater than its second.
-
-```go
-func isGreaterThan(a int, b int) bool {
-  return a > b
-}
-
-a := 3
-```
-
-With for instance the following evaluation steps:
-
-```
-isGreaterThan(5, 3)
-5 > 3
-true
-```

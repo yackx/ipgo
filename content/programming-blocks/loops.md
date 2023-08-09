@@ -26,9 +26,9 @@ where
 
 * `InitStmt` is an initialization statement, performed once before starting the loop;
 * `Condition` is the loop condition that must hold true to continue to iterate, for instance `i < 10`;
-* `PostStmt` is a statement executed after each execution of the loop. Typically we increment a counter.
+* `PostStmt` is a statement executed after each execution of the loop. For instance we increment a counter.
 
-For example, the following program will compute the sum of all integers from 0 to 10 excluded, and print it.
+For example, the following program will compute the sum of all integers from 0 to 10 (0 included and 10 excluded), and print it.
 
 ```go
 sum := 0
@@ -39,5 +39,5 @@ fmt.Println(sum)
 ```
 
 * Init statetment is `i := 0`. It is executed once;
-* End condition is `i < 10`, aka we will perform the loop while `i` is less than 10;
+* End condition is `i < 10`. The loop will be performed while `i` is less than 10;
 * After each execution of the block, `i` is increased by 1 (**incremented**)  with the instruction `i++`, a shortcut for `i = i + 1`.

@@ -12,7 +12,7 @@
 `%`  remainder      integers
 ---- -------------- -----------------------------------------
 
-You are familiar with the standard arithmetic operators. However the remainder operator may be new to you. If we divide 7 by 2, the result will be 3, and the remainder will be 1, because `7 == 2*3 + 1`.
+If we divide 7 by 2, the result will be 3, and the remainder will be 1, because `7 == 2*3 + 1`.
 
 ```
 7 / 2
