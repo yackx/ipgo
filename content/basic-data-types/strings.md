@@ -4,7 +4,7 @@ In Go, a *string* is a defined as a *slice of bytes*. For now, consider it as a 
 
 ### Formatting
 
-Package [fmt](https://golang.org/pkg/fmt/) offers formatting functions analogous to C’s `printf` and `scanf`. The format “verbs” are derived from C. Suppose you execute the following code:
+Package [fmt](https://golang.org/pkg/fmt/) offers formatting functions analogous to C’s `printf` and `scanf`. The format “verbs” are derived from C. Suppose we execute the following code:
 
 ```go
 fmt.Println(1.0/3)
@@ -28,7 +28,7 @@ Which would display:
 0.33
 ```
 
-Notice we’ve used `Printf` (print formatted) instead of `Println` (print line). There is something missing however. If we were to attempt to print the value of a second expression, it would be displayed on the same line as the first. With `Printf`, we need to explicitely add a *new line* at the end, with the `\n` symbol.
+Notice the use `Printf` (print formatted) instead of `Println` (print line). There is something missing however. If we were to attempt to print the value of a second expression, it would be displayed on the same line as the first. With `Printf`, we need to explicitely add a *new line* at the end, with the `\n` symbol.
 
 ```go
 fmt.Printf("%.2f\n", 1.0/3)
@@ -38,13 +38,13 @@ Go offers a large amount of formatting options as you can [read in the `fmt` doc
 
 ### Length and indices
 
-Let us declare a variable to hold a message:
+Let us declare a variable to hold a message.
 
 ```go
 message := "1, 2, 3, Go"
 ```
 
-The number of bytes is called the length of the string and is never negative. It can be determined by using the built-in `len` function.
+The number of bytes is called the length of the string. It can be determined by using the built-in `len` function.
 
 ```go
 fmt.Println(len(message))
@@ -69,18 +69,12 @@ fmt.Println(g)
 71
 ```
 
-The result is somewhat unexpected. Why would the program output `71` rather than `G`? It turns out that 71 is the ASCII code for `G`. Check out the [ASCII table](http://www.asciitable.com/)[^strings-1]. If we want the character `G` to be displayed, we need to print formatted with `Printf` and the appropriate verb `c`, rather than using `Println`.
+The result is somewhat unexpected. Why would the program output `71` rather than `G`? It turns out that 71 is the ASCII code for `G`. Check out the [ASCII table](http://www.asciitable.com/)[^ascii]. If we want the character `G` to be displayed, we need to print formatted with `Printf` and the appropriate verb `c`, rather than using `Println`.
 
-[^strings-1]: ASCII is an old is still widely used way to encore characters. See this table: http://www.asciitable.com/
+[^ascii]: ASCII is an old and still widely used way to represent characters. See this table: http://www.asciitable.com/
 
 ```go
 fmt.Printf("%c\n", g)
-```
-
-Attempts to access an index below `0` or beyond the last byte result in an error:
-
-```
-panic: runtime error: index out of range [100] with length 11
 ```
 
 We can use a loop to iterate over the bytes in the string. The *for* loops starts at index *0*, and keeps running as long as the index *i* is less than the length of the string. At each iteration, we increment our index *i*.
@@ -111,7 +105,7 @@ This construct with the help of `range` will assign the current index to `i` and
 4 -> o
 ```
 
-This shorter form is to be preferred over the former whenever suitable.
+This shorter form is to be preferred whenever suitable.
 
 ### Package strings
 
@@ -176,7 +170,7 @@ Take a moment to browse the *strings* package documentation.
 
 ### Immutability
 
-Strings are immutable: once created, it is impossible to change the contents of a string. Therefore, the following attempt to modify the string’s first character.
+Strings are immutable: once created, it is impossible to change the contents of a string. Therefore, an attempt to modify the string’s first character will result in an error
 
 ```go
 func main() {
@@ -184,8 +178,6 @@ func main() {
     message[0] = "H"
 }
 ```
-
-Will result in an error:
 
 ```
 ./prog.go:6:13: cannot assign to message[0]

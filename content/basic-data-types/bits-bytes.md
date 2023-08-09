@@ -23,9 +23,9 @@ Dealing with `1` or `0` exclusively would be extermely cumbersome, even for a co
 \end{tikzpicture}
 \end{center}
 
-It gives us $2^8$ or $256$ possible combinations.
+This gives us $2^8$ or $256$ possible combinations.
 
-What does the above byte represents? Typically, an positive number (unsigned integer). To convert it to a decimal value, multiply each bit by $2^k$, with $k$ equal to the bit position. In our example:
+What does the above byte represents? It depends. It can represent a positive number (unsigned integer). To convert it to a decimal value, multiply each bit by $2^k$, with $k$ equal to the bit position. In our case:
 
 \begin{center}
 \begin{tikzpicture}[every node/.style={draw, minimum size=1cm}]
