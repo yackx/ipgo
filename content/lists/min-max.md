@@ -1,6 +1,6 @@
 ## Min and max
 
-Finding the maximum of slice is a form of filter, that yields a single element. In order to find the greatest element of a slice, we first initialize the `max` as the first element of the slice.
+Finding the maximum of slice is a form of filter, one that yields a single element. In order to find the greatest element of a slice, we first initialize `max` as the first element of the slice, as it is our sole candidate when we start.
 
 ```
 12   34   6   13
@@ -22,7 +22,7 @@ func maxInt(values []int) int {
 }
 ```
 
-Let’s call this function:
+At the end, the candidate is the actual maximum. Let’s call this function.
 
 ```go
 func main() {
@@ -32,3 +32,17 @@ func main() {
 ```
 
 The output is of course `34`. The same logic can be applied to find the smallest element.
+
+Noteworthy: Go 1.21 introduces `min` and `max` built-ins.
+
+```go
+fmt.Println(max(12, 34, 6, 13))
+```
+
+Unfortunately, they are not variadic.
+
+```go
+a := []int{12, 34, 6, 13}
+fmt.Println(max(a))
+// invalid argument: a (variable of type []int) cannot be ordered
+```

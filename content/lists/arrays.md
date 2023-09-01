@@ -1,8 +1,8 @@
 ## Arrays
 
-Suppose you want to manipulate several strings of characters. For instance, a shopping list, where each string is an item. So far we have used variables to contain numeric (integer or floating point) and string values. They were single values. You can declare several variables to hold several values, but this will quickly become cumbersome if the number of items on our list is not known in advance, or if there are a large amount of items to purchase.
+Suppose we want to manipulate several strings of characters. For instance, a shopping list, where each item is represented by a string of characters. So far we have used variables to contain numeric (integer or floating point) and string values. They were single values. We can declare several variables to hold several values, but this will quickly become cumbersome if the number of items on our list is not known in advance, or if there is a large amount of items to purchase.
 
-All high-level languages offer some data structure to that effect. In many instances, the basic building block is called an **array**, defined as a *collection of elements* (values or variables), each identified by an *index* (plurals *indices*).
+All high-level languages offer some data structure to that effect. In many cases, the basic building block is called an **array**, defined as a *collection of elements* (values or variables), each identified by an *index* (plurals *indices*).
 
 The following expression declares a variable `fruits` as an array of 3 strings:
 

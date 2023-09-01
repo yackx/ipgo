@@ -16,13 +16,13 @@ func main() {
 }
 ```
 
-We have seen that it won't work with a type other than a `int`. It makes sense not to square another type like `string`, but we could perfectly want to compute the square of to floating-point numbers.
+We have seen that it won't work with a type other than a `int`. It makes sense not to square another type like `string`, but we could perfectly want to compute the square of two floating-point numbers.
 
-Go allows to define a **generic** function[^go-generics].
+Go allows to define a **generic** function[^go-generics] that accepts different types. We can modify `sumOfSquares` to accept `int`, `float32` and `float64`.
 
 [^go-generics]: https://go.dev/doc/tutorial/generics#add_generic_function
 
-First, we declare a type with constraints:
+First, we declare a type `Number` with constraints:
 
 ```go
 type Number interface {

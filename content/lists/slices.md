@@ -1,6 +1,6 @@
 ## Slices
 
-Arrays are a key construct but they are a bit limited in flexibility. In Go, *slices* are usually preferred. They are built on top of arrays, leveraging their performance, while adding a lot of convenience.
+Arrays are a key construct but they offer limited flexibility. In Go, *slices* are usually preferred. They are built on top of arrays, leveraging their performance, while adding convenience.
 
 A slice can be declared like an array, without counting the elements. Notice the subtle difference: we use `[]` for slices when we had `[...]` or `[3]` for arrays. So the following is a *slice*, not an *array*:
 
@@ -22,7 +22,7 @@ fruits = append(fruits, "cherry")
 // fruits[3] == "cherry"
 ```
 
-Resutling in a slice of 4 elements, of which the three first are empty.
+Resutling in a slice of 4 elements, of which the three first remain empty.
 
 \begin{center}
 \begin{tikzpicture}
@@ -46,7 +46,7 @@ Resutling in a slice of 4 elements, of which the three first are empty.
 \end{tikzpicture}
 \end{center}
 
-Notice that we assigned the result of the `append` expression back to `fruits`. The `append` statement alone does not modify our slice of fruits ; instead, it returns a modified slice. On top of that, the Go compliler rightfully prevents any attempt to execute a statement if it is not used. Therefore, any attempt to compile the following code would fail, because the result of the `append` call would be left unused:
+Notice that we assigned the result of the `append` expression back to `fruits`. The `append` statement alone does not modify the slice of fruits ; instead, it returns a modified slice. On top of that, the Go compliler rightfully prevents any attempt to execute a statement if it is not used. Therefore, any attempt to compile the following code would fail, because the result of the `append` call would be left unused:
 
 ```go
 append(fruits, "cherry")
@@ -54,15 +54,15 @@ append(fruits, "cherry")
 ./prog.go:9:8: append(fruits, "cherry") evaluated but not used
 ```
 
-Go will however allow a statement without effect if the result is explicitly discarded.
+However. Go allows a statement without effect if the result is explicitly discarded. To discard the result, assign it to `_` (underscore).
 
 ```go
 _ = append(fruits, "cherry")
 ```
 
-Of course, this last expression does probably not make sense in a program, but you are still free to shoot yourself in the foot. The compiler will detect many errors made in “good faith”, but not gross or even intentional errors.
+Of course, this last expression does probably not make sense in a program, but we are still free to shoot ourselves in the foot. The compiler will detect many errors made in “good faith”, but it does not protect us against all programming errors.
 
-If you have two slices `a` and `b`, you can append one to the other, using `...` to expand the second slice to a list of arguments.
+A slice can be appended to another as follows:
 
 ```go
 a := []string{"apple", "pear"}
@@ -95,7 +95,7 @@ a = append(a, b...)
 
 A slice can be created by “**slicing**” another slice (or array), that is to say, by taking a portion of it. Slicing is achieved by specifying a half-open range $[low,high)$ where $low$ is the index of the first element (included) and $high$ is the index of the last element (excluded). For example, `fruits[1:3]` will create a new slice including the fruits at indices from `1` included to `3` excluded --- that is, fruits at positions 1 and 2.
 
-The newly created slice will have indices `0` and `1`, not the indices `1` and `2` it has in the original slice.
+The newly created slice will have indices `0` and `1`, not the indices `1` and `2` it had in the original slice.
 
 ```go
 fruits := []string{"apple", "banana", "orange", "grapefruit"}
@@ -153,19 +153,19 @@ Start and end indices can be omitted. In `s[low:high]`, the default value are `0
 // fruits[:] == fruits
 ```
 
-**WARNING**: Beware that slicing **does not copy data**. The makes the slicing operation efficient, but it may not be what you expect.
+**WARNING**: Beware that slicing **does not copy data**. This makes the slicing operation efficient, but the outcome may not be what was expected.
 
 Take the following example. Notice how, by modifying `letters`, we also modified `twoFirst`:
 
 ```go
 letters := []byte{'a', 'b', 'c', 'd', 'e'}
 twoFirst := letters[:2]
-fmt.Printf("%c\n", twoFirst[0])
+fmt.Printf("%c%c\n", twoFirst[0], twoFirst[1])  // ab
 letters[0] = 'z'
-fmt.Printf("%c\n", twoFirst[0])
+fmt.Printf("%c%c\n", twoFirst[0], twoFirst[1])  // zb
 ```
 
-The built-in `copy`, as its name suggests, **copies** a slice from source to destination, and returns the number of elements copied. Watch out for the order of the arguments. The `destination` comes first.
+To actually copy a slice, the built-in `copy`, as its name suggests, **copies** a slice from source to destination. It returns the number of elements copied. Watch out for the order of the arguments. The `destination` comes first!
 
 ```go
 func copy(dst, src []T) int
@@ -199,14 +199,16 @@ Will produce:
 Remember the chapter on loops. Back then, we wrote a simple sum function.
 
 ```go
-sum := 0
-for i := 0; i < 10; i++ {
-	sum += i
+func sumTen() int {
+  sum := 0
+	for i := 0; i < 10; i++ {
+		sum += i
+	}
+	return sum
 }
-fmt.Println(sum)
 ```
 
-The very same construct can be used to iterate over an array or a slice. At each iteration, instead of displaying the value of `i` (our index), we display the fruit at index `i`. We keep iterating while our index is strictly less than the number of fruits, so `i < len(fruits)`. The index will therefore vary from $0$ to $3$, and never reach $4$, otherwise we would attempt to access the fruit at index $4$, which would cause an error.
+The same construct can be used to iterate over an array or a slice. At each iteration, instead of displaying the value of `i` (our index), we display the fruit at index `i`. We keep iterating while our index is strictly less than the number of fruits, so `i < len(fruits)`. The index will therefore vary from $0$ to $3$, and never reach $4$, otherwise we would attempt to access the fruit at index $4$, which would cause an error.
 
 ```go
 fruits := []string{"apple", "banana", "orange", "grapefruit"}
@@ -249,7 +251,7 @@ for _, fruit := range fruits {
 }
 ```
 
-The generic, more verbose construct has its place. If you need to skip some elements, or loop over them backward for instance, it can accomodate a wider range of scenarios. Let’s display the list of fruits in reverse order:
+The generic, more verbose construct has its place. If we need to skip some elements, or loop over them backward for instance, it can accomodate a wider range of scenarios. Let’s display the list of fruits in reverse order:
 
 ```go
 fruits := []string{"apple", "banana", "orange", "grapefruit"}
@@ -258,7 +260,7 @@ for i := len(fruits) - 1; i >= 0; i-- {
 }
 ```
 
-Notice that we had to start at `len(fruits) - 1` with $-1$ because the length is $4$, but the highest possible index is $3$.
+Notice that we had to start at `len(fruits) - 1` with $-1$ because the length is $4$, so the highest possible index is $3$.
 
 ```
 grapefruit
@@ -269,4 +271,6 @@ apple
 
 ### Reference
 
-[Slice intro on golang blog](https://blog.golang.org/slices-intro)
+[Slice intro on golang blog](https://blog.golang.org/slices-intro)[^slice-references]
+
+[^slice-references]: https://blog.golang.org/slices-intro
