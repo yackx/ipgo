@@ -1,10 +1,15 @@
 ## Concurrency (goroutines)
 
-Concurrency is property of a program, when two or more tasks can start, run, and complete in overlapping time periods.
+**Concurrency** is a property of a program, when two or more tasks can start, run, and complete in overlapping time periods.
 
-For instance, a web crawler that scans pages on the internet can be made of a scanner that downloads pages, and a parser that interprets them. They may run at the same time, but it is not mandatory to achieve concurrency. The parser could run out of work if the scanner is stuck because of a broken internet connection.
+For instance, a web crawler that scans pages on the internet can be made of two components:
 
-Go has outstanding built-in support for concurrency via **goroutines**.
+- a scanner that downloads pages
+- a parser that interprets them.
+
+They may run at the same time, but it is not mandatory to achieve concurrency. The parser could run out of work if the scanner is stuck because of a broken internet connection.
+
+Go offers outstanding built-in support for concurrency via **goroutines**.
 
 A goroutine is a function that can run concurrently with other functions. It is a plain old function invoked with the `go` keyword.
 
@@ -44,4 +49,4 @@ func main() {
 
 This time, the numbers are printed... after the message. We gave time to the goroutine to complete, but there is **no guarantee on the execution order**.
 
-Besides, adding `time.Sleep` is a bad practice (how do you even decide on the "right" sleep duration? How much time does it need to display the number on different machines?). We will need another approach in the next section.
+Besides, adding `time.Sleep` to work around the original issue is a bad practice to work around our problem. How do you even decide on the "right" sleep duration? How much time does it need to display the number on different machines?. We will present another approach in the next section.

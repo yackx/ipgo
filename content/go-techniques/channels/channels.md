@@ -1,8 +1,8 @@
 ## Channels
 
-Channels are the Go way for goroutines to communicate with one another, and to synchronize their work.
+Channels are the Go way for goroutines to **communicate** with one another, and to synchronize their work.
 
-As Rob Pike would put it: "don't let computations communicate by sharing memory, let them share memory by communicating".
+As Rob Pike said: "don't let computations communicate by sharing memory, let them share memory by communicating".
 
 The communication can be uni- or bi-directional. Assuming `T` is the data type of the data passed through the channel:
 
@@ -12,7 +12,7 @@ The communication can be uni- or bi-directional. Assuming `T` is the data type o
 
 ### Fake web crawler
 
-Let's implement a fake version of the web crawler we mentionned earlier. We first make a channel called `pages`. It will be used by our two workers. We shall separate fetching from parsing a page. The program terminates when the user presses Enter. `fetch` and `parse` are invoked as goroutine with `go`.
+Let's implement a fake version of the web crawler we mentionned earlier. We first make a channel called `pages`. It will be used by our two workers. We shall separate fetching from parsing a page. The program terminates when the user presses Enter. `fetch` and `parse` are invoked as goroutines with `go`.
 
 We pass the channel as a parameter. Notice the slight difference in declaration:
 
@@ -47,21 +47,28 @@ func main() {
 	fmt.Scanln(&input)
 }
 
+// Fetch the pages
 func fetch(urls []string, pages chan<- string) {
 	for _, url := range urls {
-		// Pretend to fetch the page
 		fmt.Printf("Fetching %s\n", url)
 		pages <- url
+		fakeProcessing()
 	}
 }
 
+// Pretend to parse the pages
 func parse(pages <-chan string) {
 	for {
 		// Pretend to parse the page
 		url := <-pages
 		fmt.Printf("Parsing %s\n", url)
-		sleepTime := time.Duration(rand.Intn(2000)) * time.Millisecond
-		time.Sleep(sleepTime)
+		fakeProcessing()
 	}
+}
+
+// Add a rendom delay to simulate processing
+func fakeProcessing() {
+	sleepTime := time.Duration(rand.Intn(1000)) * time.Millisecond
+	time.Sleep(sleepTime)
 }
 ```

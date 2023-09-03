@@ -6,7 +6,9 @@ The canonical use case for teaching recursion is the calculation of factorial.
 
 $$n!=\prod _{i}^{n}i=1\times 2\times 3\times \ldots \times (n-1)\times n\quad n\in \mathbb {N}$$
 
-By convention, factorial of $0$ is $1$ ; $0! = 1$. For example:
+By convention, factorial of $0$ is $1$ ; $0! = 1$.
+
+For example, $5! = 120$.
 
 $$5! = 5\times 4\times 3\times 2\times 1 = 120$$
 
@@ -22,11 +24,11 @@ func factorial(n uint) uint {
 }
 ```
 
-Instead, we can use recursion to solve this problem. Let's see how it works with a methaphore. Suppose you are asked to compute $fact(3)$. But that is too much work. You can multiply 2 numbers. You also know Alice can calculate $fact(2)$. So you ask her to give you the value of $fact(2)$, and you multiply the result by $3$.
+Recursion can be used to solve this problem. Let's see how it works with a methaphore. Suppose we are asked to compute $fact(3)$. But that is too much work. We can multiply 2 numbers however. We also know Alice can calculate $fact(2)$. So we ask her to give us the value of $fact(2)$, and we multiply the result by $3$.
 
     3! = 3 * 2!  // ask Alice for 2!
 
-How does Alice calculate $fact(2)$? She too can multiply 2 numbers. Alice is lazy. She can't bothered to put too much thoughts into $fact(1)$. She calls Bob. He knows how to calculate $fact(1)$. She will simply multiply $2 \times fact(1)$.
+How does Alice calculate $fact(2)$? She too can multiply 2 numbers. But she can't bothered to put too much thoughts into $fact(1)$. So she calls Bob. He knows how to calculate $fact(1)$. She will simply multiply by 2 the result given by Bob, $2 \times fact(1)$.
 
     2! = 2 * 1!  // Alice asks Bob for 1!
 
@@ -34,7 +36,7 @@ So far we have:
 
     3! = 3 * (2 * 1!)
 
-Bob does not need to call anyone. He knows $fact(1) = 1$ and that's it. He deals with the **terminal condition** or **base case**, upon which the solution stops recurring. We end up with:
+Bob does not need to call anyone. He knows $fact(1) = 1$. He deals with the **terminal condition** or **base case**, upon which the solution stops recurring. We end up with the following stack of calls:
 
     3 * 2!
     3 * (2 * 1!)
@@ -43,7 +45,7 @@ Bob does not need to call anyone. He knows $fact(1) = 1$ and that's it. He deals
     3 * 2
     6
 
-In a computer program, you, Alice and Bob roles will be played by a single function. A recursive function. More formally, the recursive definition of factorial is:
+In a computer program, we, Alice and Bob roles will be played by a single function. A recursive function. More formally, the recursive definition of factorial is:
 
     0! = 1.
     n > 0, n! = (n – 1)! × n.
@@ -75,11 +77,12 @@ There is a cost to this approach. When we decompose the chain of calls made by A
 
 $$f(5) \rightarrow f(4) \rightarrow f(3) \rightarrow f(2) \rightarrow f(1) \rightarrow f(0)$$
 
-The stack space needed for the recursive calls is proportional to the number. We say the space complexity is $\mathcal{O}(n)$. Compared to the iterative version, for which the space complexity is constant in $\mathcal{O}(1)$. For small numbers, keeping calls on the stack has limited adverse effect. For larger numbers however, the stack may **overflow**.
+The stack space needed for the recursive calls is proportional to the number $n$. We say the space complexity is $\mathcal{O}(n)$. Compare this to the iterative version, for which the space complexity is constant in $\mathcal{O}(1)$: no matter how big $n$ is, the program will not require to memorize the previous function calls. For small numbers, keeping calls on the stack has limited adverse effect. For larger numbers however, the stack may **overflow**.
 
 A stack overflow can be avoided by using **tail recursion**, in which the recursive call is the _last call_. We use an `accumulator` to carry on the intermediate result. An **auxiliary** function is used to perform the actual recursion. The auxiliary function is not meant to be called directly.
 
 ```go
+// Tail recursion. Not optimized in Go.
 func factorial_rec(n, accumulator uint) uint {
     if n == 0 {
         return accumulator
@@ -93,6 +96,6 @@ func factorial(n uint) uint {
 }
 ```
 
-Unfortunately, like many imperative languages, Go does not optimize tail recursion, unlike most functional languages (Haskell, Scheme etc). But we wanted to demontrate the technique nonetheless.
+Unfortunately, like many imperative languages, Go does not optimize tail recursion, unlike most functional languages (Haskell, Scheme etc). But we wanted to briefly demontrate the technique nonetheless.
 
-Arguablty, this last version is less readable than the initial, iterative version. Although factorial is a traditional example to explain recursion, it may not be the preferred approach in practive. However recursion is a key technique when solving classic problems like Fibonacci numbers or the Tower of Hanoi. Some problems are way easier to solve with recursion.
+Arguably, this last version is less readable than the initial, iterative version. Although factorial is a traditional example to explain recursion, it may not be the preferred approach in practice. Recursion is however a key technique well suited to solve many problems, like Fibonacci numbers or the Tower of Hanoi. Some problems are way easier to solve with recursion.

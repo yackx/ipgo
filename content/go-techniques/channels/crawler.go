@@ -22,20 +22,27 @@ func main() {
 	fmt.Scanln(&input)
 }
 
+// Fetch the pages
 func fetch(urls []string, pages chan<- string) {
 	for _, url := range urls {
-		// Pretend to fetch the page
 		fmt.Printf("Fetching %s\n", url)
 		pages <- url
+		fakeProcessing()
 	}
 }
 
+// Pretend to parse the pages
 func parse(pages <-chan string) {
 	for {
 		// Pretend to parse the page
 		url := <-pages
 		fmt.Printf("Parsing %s\n", url)
-		sleepTime := time.Duration(rand.Intn(2000)) * time.Millisecond
-		time.Sleep(sleepTime)
+		fakeProcessing()
 	}
+}
+
+// Add a rendom delay to simulate processing
+func fakeProcessing() {
+	sleepTime := time.Duration(rand.Intn(1000)) * time.Millisecond
+	time.Sleep(sleepTime)
 }

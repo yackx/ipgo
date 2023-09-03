@@ -56,7 +56,7 @@ The asterisk is also used to **dereference** the pointer. Dereferencing a pointe
 
 Pointers in Go are useful for:
 
-- **Modifying values in-place**. When you pass a value to a function, it is passed by value, which means that any changes made to the value within the function will not affect the original value. However, if you pass a _pointer_ to the value, you can modify the value in-place, which means that the changes made within the function will also be reflected in the original value.
+- **Modifying values in-place**. When you pass a value to a function, it is passed by value, which means that any changes made to the parameter in the function will not affect the original value. However, if you pass a _pointer_ to the value, you can modify the value in-place, which means that the changes made in the function will also be reflected in the original value.
 
 - **Data structures**. Pointers are essential for implementing many data structures such as linked lists, trees, and graphs. These data structures require dynamic allocation of memory and pointers allow you to allocate and manage memory dynamically.
 
@@ -78,7 +78,7 @@ func main() {
 }
 ```
 
-The function `AddOne` will not modify `x` because it is passed **by value**. Of course, we don't need no fancy pointer to add 1. We don't even need a function. That is just an example. Let's modify our function to actually add 1 to `x`.
+The function `AddOne` will **not** modify `x` because it is passed **by value**. Of course, we don't need no fancy pointer to add 1. We don't even need a function. That is just an example. Let's modify our function to actually add 1 to `x`.
 
 ```go
 func AddOne(x *int) {
@@ -92,9 +92,9 @@ func main() {
 }
 ```
 
-By using a pointer `(*int)` the `AddOne` function is able to modify the original `x`.
+By using a pointer `(*int)`, the `AddOne` function is able to modify the original `x`.
 
-The `&` operator to obtain the **address** of a variable. `&x` returns a `*int` (pointer to an int) because `x` is an `int`. This is what allows us to modify the original variable.
+The `&` operator is used to obtain the **address** of a variable. `&x` returns a `*int` (pointer to an int) because `x` is an `int`. This is what allows us to modify the original variable.
 
 ### Data structures
 

@@ -1,10 +1,3 @@
-## Producer-consumer
-
-We can generalize the webcrawler to a pattern called **producer-consumer**.
-
-The main function waits for a timeout. Instead of sleeping, it uses the `select` construct to match a particular event. In this case, the event is a timeout.
-
-```go
 package main
 
 import (
@@ -50,24 +43,3 @@ func main() {
 		fmt.Println("Timeout reached, exit")
 	}
 }
-```
-
-The `for { }` construct is an endless loop. Possible execution (actual output may vary)
-
-```bash
-$ go run pc.go 
-Produced 0
-Consumed 0
-Produced 1
-Produced 2
-Consumed 1
-Produced 3
-Consumed 2
-Produced 4
-Consumed 3
-Timeout reached, exit
-```
-
-There are many ways to organize your program when it comes to channels, and Go offers many mechanisms beyond the scope of this chapter [^channels].
-
-[^channels]: See https://go.dev/tour/concurrency/2 https://go101.org/article/channel.html
