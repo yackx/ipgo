@@ -38,7 +38,7 @@ type Shape interface {
 }
 ```
 
-As we know, functions can be added to structs. Guess what. We are going to add `Area()` and `Perimeter()` functions to our two shapes. The actual computation depend on the shape, but the function declarations are the same, only applied to different types.
+As we know, functions can be added to structs. We are going to add `Area()` and `Perimeter()` functions to our two shapes. The actual computation depend on the shape, but the function declarations are the same, only applied to different types.
 
 ```go
 func (s *Square) Area() float64 {
@@ -72,7 +72,7 @@ func (r *Rectangle) String() string {
 }
 ```
 
-Now that `Square` and `Rectangle` implement the methods defined in `Shape`, they _are_ shapes and can be treated uniformly as such ; for instance in a slice of `[]Shape`. Notice how, after the slice declaration, there are no references to `Square` or `Triangle`. There is no use of the original structs, only of the interface `Shape`. We have a achieved a form of **polymorphism**.
+Now that `Square` and `Rectangle` implement the methods defined in `Shape`, they _are_ shapes and can be treated uniformly as such ; for instance in a slice of `[]Shape`. Notice how, after the slice declaration, there are no references to `Square` or `Triangle`. There is no mention of the original structs, only of the interface `Shape`. We have a achieved a form of **polymorphism**.
 
 ```go
 square := &Square{Side: 5}
@@ -89,18 +89,17 @@ Square. s=5.000000 => area=25.000000, perimeter=20.000000
 Rectangle. w=4.000000, h=8.000000 => area=32.000000, perimeter=24.000000
 ```
 
-> _Note_: Make sure you implement the **exact methods** from the interface. A simple typo and you would just be declaring an unrelated function, failing to adhere to the interface.
-
+> _Note_: Make sure you implement the **exact functions** from the interface. A simple typo and you would be declaring an unrelated function, failing to adhere to the interface.
 
 ### The empty interface
 
-The interface type that specifies zero methods is known as the empty interface.
+The interface type that specifies no function is known as the empty interface.
 
 ```go
 interface{}
 ```
 
-An empty interface may hold values of any type, because every type implements "at least" zero methods. In other words, all types implement the empty interface _implicitly_.
+An empty interface may hold values of any type, because every type implements "at least" zero function. In other words, all types implement the empty interface _implicitly_.
 
 Consider the following declaration[^tour-14]:
 
@@ -128,9 +127,9 @@ fmt.Printf("(%v, %T)\n", i, i)
 
 Prints `(hello, string)` and, as you figured out, `i` is now a `string` and its value is `"hello"`.
 
-> _Note_: These code snippets are for demonstration purpose only. Their appearance in actual code would be dubious.
+> _Note_: These code snippets are for demonstration purpose only. Their appearance in production code would be dubious.
 
-Empty interfaces are used by code that handles values of **unknown type**. For instance, the well-known `fmt.Println`[^println] takes any number of arguments of type `interface{}`. All that time, you have been using it intuitively. Now you can understand the mechanism that lies behind.
+Empty interfaces are used by code that handles values of **unknown type**. For instance, the well-known `fmt.Println`[^println] takes any number of arguments of type `interface{}`. All that time, we have been using it intuitively. Now we can understand the mechanism that lies behind.
 
 [^println]: https://golang.org/pkg/fmt/#Println
 

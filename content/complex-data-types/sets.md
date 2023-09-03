@@ -2,11 +2,9 @@
 
 A set is an abstract data type that can store **unique** values, **without any particular order**.
 
-Unlike many high level languages, Go does not have a data type for set. It has however another data type that can serve the same purpose: a map. Each key can appear at most once in a map, so the first property of a set (unique keys) can be met. There is no order either so the second property is met as well.
+Go does not have a data type for set. It has however another data type that can serve the same purpose: **map**. Each key can appear at most once in a map, so the first property of a set (uniqueness) is fulfilled. There is no order either so the second property is met as well.
 
-The trick is to ignore the values in the map.
-
-The idiomatic way (or one of the idiomatic ways) to implement a set in Go is the following, assuming a set of strings:
+The trick is to **ignore the values** in the map. The idiomatic way (or one of the idiomatic ways) to implement a set in Go is the following, assuming a set of strings:
 
 ```go
 set := make(map[string]bool)
@@ -22,21 +20,22 @@ fruits := map[string]bool{
 }
 ```
 
-All the concepts we have seen about map (add, delete, iterate) apply here.
+All the operations we have seen about map (add, delete, iterate) apply here.
 
-The boolean value is a dummy value, serving no purpose other than to "make the map work". It is slightly inefficient (a bit of memory is used to hold a fake value) and arguably inelegant, so you may run into other implementations using a `struct{}` as the value.
+The boolean value is a _dummy_ value, serving no purpose other than to "make the map work". It is slightly inefficient (a bit of memory is used to hold a fake value) and arguably inelegant, so other implementations may use a `struct{}` as the value.
 
 ```go
 type void struct{}
+
 var member void
 fruits := map[string]void{
-    "apple":  void,
-    "orange": void,
-    "pear":   void,
+    "apple":  member,
+    "orange": member,
+    "pear":   member,
 }
 ```
 
-The first version is more straighforward if you need to declare a set "on the spot". In practice, and in this chapter, we will prefer a dedicated structure that **encapsulate** (hide the underlying details) the data type _set_ and its operations.
+The first version is more straighforward if you need to declare a set "on the spot". In practice, we prefer a dedicated structure that **encapsulate** (hide the underlying details) the data type _set_ and its operations.
 
 So instead of manipulating a map acting as a set, we will be manipulating a new data type Set. We will know that underneath, there is a map, but it won't appear in our interactions with the set _from the outside_.
 
@@ -50,7 +49,7 @@ type StringSet struct {
 }
 ```
 
-The `set` lower case is not accessible from outside the package `myset`. This is as desired, because want to deal with a `StringSet` rather than with the underlying map. We need in return to implement some basic functionalities, otherwise there would be no way to interact with the set. Let's start with a constructor.
+The `set` (lower case) is not accessible from outside the package `myset`. This is as desired, because want to deal with a `StringSet` rather than with the underlying map. We need in return to implement some basic functionalities, otherwise there would be no way to interact with the set. Let's start with a constructor.
 
 ```go
 func NewStringSet() StringSet {
@@ -75,9 +74,9 @@ func NewStringSet() StringSet {
 }
 ```
 
-This second version is equivalent to the first one, but a trained programmer would prefer the first one. Try to figure out how they match.
+This second version is equivalent to the first one, but it is overly verbose. Try to figure out how they match.
 
-We can create a `StringSet` with `set := NewStringSet()` but we must implement a few more operations before we can do something usefull with it.
+We can create a `StringSet` with `set:=NewStringSet()` but before we can do something usefull with it, we must implement a few more operations.
 
 | Operation  | Description
 | ---------- | --------------------------------
@@ -85,7 +84,7 @@ We can create a `StringSet` with `set := NewStringSet()` but we must implement a
 | Remove     | Remove an element from the set
 | Contains   | Check if the set contains a value
 
-We already know how to add or delete an element from a map.
+We already know how to add or delete an element from a map, or to test if a map contains a given element.
 
 ```go
 func (ss StringSet) Add(value string)  {
@@ -156,7 +155,7 @@ func (ss StringSet) Intersection(otherSet StringSet) StringSet {
 }
 ```
 
-We have used an idiomatic construct in the `if` statement: we assign and check `found` on the same line. It saves one line and express the intent that we want to check if the key is present and discard `found` afterwards.
+We have used an idiomatic construct in the `if` statement: we assign and check `found` on the same line. It saves one line and conveys the intent that we want to check if the key is present and discard `found` afterwards.
 
 To illustrate the function, I know of one fruit that can be considered as a vegetable.
 

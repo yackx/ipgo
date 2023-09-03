@@ -10,7 +10,7 @@ And optional operations:
 - **len** returns the number of elements in the collection
 - **peek** returns the most recently added element (without removing it)
 
-It is a **LIFO** (last in, first out) data structure.
+It is a **LIFO** (Last In, First Out) data structure.
 
 Stacks are used for implementing function calls, storing program variables, parsing expressions, evaluating arithmetic expressions, ...
 
@@ -18,11 +18,11 @@ Go includes a package that implements a stack[^go-stack]. It uses an optimized `
 
 ### A simple implementation
 
-As an exercise, we can implement a simpler stack. We will use:
+As an exercise, we can implement a simple stack. We will:
 
-- a slice to store the values in the collection
-- a generic type `T` (rather than the legacy `interface{}` in the Go library)
-- and all functions will operate on a `*Stack[T]`.
+- use a slice to store the values in the collection
+- use a generic type `T` (rather than the legacy `interface{}` in the Go library)
+- attach all functions will operate on a `*Stack[T]`.
 
 This translates to:
 
@@ -57,7 +57,7 @@ func (s *Stack[T]) Pop() (elem T, ok bool) {
 Remarks:
 
 - We rely on `New()` to create a `*Stack` rather than forcing the client to declare a slice.
-- `Pop()` returns the element (if found) and a flag. This is a common and convenient way to return an possibly missing value in Go.
+- `Pop()` returns the element (if found) and a flag. This is a common and convenient way to return a possibly missing value in Go.
 
 Let's add a main package to demonstrate the stack capabilities, and how to pop a value.
 
@@ -91,7 +91,7 @@ Refer to the appendix "Modules" for instructions on how to store those files and
 
 1. Make this code run on your computer.
 
-2. Add a `Peek()` function. Test that it does not remove the element it returns.
+2. Wrie a function `Peek()`. Make sure that it does not remove the element it returns.
 
 [^stack-wikipedia]: https://en.wikipedia.org/wiki/Stack_(abstract_data_type)
 [^go-stack]: https://pkg.go.dev/github.com/golang-collections/collections/stack

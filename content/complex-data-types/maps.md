@@ -4,23 +4,43 @@
 
 A **map** is a data type composed of a collection of **key-value pairs**. Each key can appear at most once.
 
-With a map, you can for instance associate fruits with their energy value, or the quantity remaining in your kitchen. Conceptually, it looks like this:
+With a map, we can for instance associate fruits with their energy value, or countries with their capital cities. Conceptually, it looks like this:
 
-```
-fruit -> quantity
-```
+\begin{center}
+\usetikzlibrary{positioning, arrows.meta}
+\begin{tikzpicture}[node distance=1.5cm, auto, auto,->=stealth]
+    \node[draw, rectangle] (A) {fruit};
+    \node[draw, rectangle, right=of A] (B) {quantity};
+    \draw[->, shorten >=0.1cm, shorten <=0.1cm] (A) -- (B);
+\end{tikzpicture}
+\end{center}
 
 With some content:
 
-```
-apple -> 2
-orange -> 3
-pear -> 1
-```
+\begin{center}
+\usetikzlibrary{positioning, arrows.meta}
+\begin{tikzpicture}[node distance=0.2cm and 1.5cm, auto,->=stealth]
+    \node[draw, rectangle] (A) {apple};
+    \node[draw, rectangle, right=of A] (B) {2};
+    \draw[->, shorten >=0.1cm, shorten <=0.1cm] (A) -- (B);
+    \node[draw, rectangle, below=of A] (C) {orange};
+    \node[draw, rectangle, right=of C] (D) {3};
+    \draw[->, shorten >=0.1cm, shorten <=0.1cm] (C) -- (D);
+    \node[draw, rectangle, below=of C] (E) {pear};
+    \node[draw, rectangle, right=of E] (F) {1};
+    \draw[->, shorten >=0.1cm, shorten <=0.1cm] (E) -- (F);
+\end{tikzpicture}
+\end{center}
 
 ### Operations
 
-A map offers operations to add a new key-pair, to retrieve the value associated to a key, to check the existence of the key and therefore of the value, to delete a key-value pair, and to iterate through its elements.
+A map offers operations to:
+
+- add a new key-pair
+- retrieve the value associated to a key
+- check the existence of the key and therefore of the value
+- delete a key-value pair
+- iterate through its elements.
 
 In Go, the corresponding type is aptly named `Map`.
 
@@ -34,7 +54,7 @@ We can declare a variable `fruits` as a map in which keys are `string` (the name
 var fruits map[string]int
 ```
 
-This map is not initialized. It will behave like an empty map if you attempt to read from it, but any attempt to modify it will cause a runtime panic. Instead, you can declare the same map and initialize it with the built-in `make`.
+This map is not initialized. It will behave like an empty map if you attempt to read from it, but any attempt to modify it will cause a runtime panic. Instead, we can declare the same map and initialize it with the built-in `make`.
 
 ```go
 fruits = make(map[string]int)
@@ -59,54 +79,43 @@ fruits := map[string]int{
 // fruits == map[apple:2 orange:3 pear:1]
 ```
 
-\usetikzlibrary{matrix}
-\begin{tikzpicture} [nodes={minimum width=0.8cm, minimum height=0.8cm},
-         row sep=-\pgflinewidth, column sep=-\pgflinewidth]
-   \matrix (hash)[matrix of nodes, nodes={draw, anchor=center}]
-         {
-       apple & 2 \\
-       orange & 3 \\
-       pear & 1 \\
-    };
-\end{tikzpicture}
-
-The _map literal_ can also be empty, using the same syntaxm only with an empty literal `{}`. In this case, the empty map will be readable, just like an unitialized map, but it will also be writable (add, modify or delete entries).
+The _map literal_ can also be empty, using the same syntax, only with an empty literal `{}`. In this case, the empty map will be readable, just like an uninitialized map, but it will also be writable (add, modify or delete entries).
 
 ```go
 fruits = map[string]int{}
 ```
 
-A value can be retrieved and assigned to a variable. Supposing we set `apple` to `2`:
+A value can be retrieved and assigned to a variable. Suppose we set the apple count to `2`:
 
 ```go
-applesCount = fruits["apple"]
-// applesCount == 2
+appleCount = fruits["apple"]
+// appleCount == 2
 ```
 
-You can obtain the number of elements (keys) in the map with the built-in `len`
+The number of elements (keys) in the map can be obtained with the built-in `len`
 
 ```go
 typesOfFruits := len(fruits)
 // typesOfFruits == 3
 ```
 
-Adding a new key-pair does not require any built-in. Assign the value to the corresponding key like so:
+To add a new key-pair, assign the value to the corresponding key like so:
 
 ```go
 fruits["banana"] = 5
 ```
 
-There can not be any duplicate key. If you assign an existing key, its value will be replaced. Duplicate values are allowed. It makes sense: there could not be two different counts of _orange_ for example. But two fruits can have the same count.
+There cannot be any duplicate key. If you assign a value an existing key, the existing value will be replaced by the new one. Duplicate values are not allowed.
 
 ```go
 fruits["banana"] = 5
 // map[apple:2 orange:6 pear:1, banana:5]
 fruits["banana"] = 1
-// "banana" value replaced, no new key
+// "banana" value replaced, no new key created
 // map[apple:2 orange:6 pear:1, banana:1]
 ```
 
-To remove an entry from the map, use `delete`. It does not return any value and is safe to invoke even if the value is not present in the map.
+To remove an entry from the map, use `delete`. It is safe to invoke even if the value is not present in the map.
 
 ```go
 // fruits == {"apple": 2, "orange": 3, "pear": 1}
@@ -116,7 +125,7 @@ delete(fruits, "foo")
 // fruits == {"orange": 3, "pear": 1}
 ```
 
-In a typical Go way, you can perform a two-values assignement that tests for the presence of the key, and retrieve it. Starting from our original map `orangeCount` will contain `3` and `present` will be `true`.
+In a typical Go way, we can perform a two-values assignement that tests for the presence of the key, and retrieve it in one operation. Starting from our original map, `orangeCount` will contain `3` and `present` will be `true` after this assignment.
 
 ```go
 orangeCount, present = fruits["orange"]
@@ -124,7 +133,7 @@ orangeCount, present = fruits["orange"]
 // present == true
 ```
 
-Using a similar construct, you can test a key for existence by discarding the first value with `_` (underscore).
+Using a similar construct, we can test a key for existence by discarding the value with `_` (underscore).
 
 ```go
 _, present = fruits["orange"]
@@ -147,15 +156,15 @@ Fruit: orange Count: 3
 Fruit: pear Count: 1
 ```
 
-> _Note_: The order of iteration is not guaranteed.
+> _Note_: The map is not ordered.
 
 ### Exercices
 
-1. Declare an unitialized map holding name-age pairs. Attempt to read the key `john`, which is not present. What happens? Attempt to write the pair `steve`: `32`. Observe the behavior.
+1. Declare an uninitialized map holding name-age pairs. Attempt to read the key `john`, which is not present. What happens? Attempt to write the pair `steve`: `32`. Observe the behavior.
 
-2. Declare a map with keys=country and value=capitals, using a map litteral with two entries: `Belgium`: `Brussels` and `Spain`: `Madrid`. Read the values of the following countries: `Spain`, `Italy`.
+2. Map countries to their capitals, using a map litteral with two entries: `Belgium`: `Brussels` and `Spain`: `Madrid`. Read the values of the following countries: `Spain`, `Italy`.
 
-3. Using the same map, add the entry `Chile`: `Santiago`.
+3. In the same map, add the entry `Chile`: `Santiago`.
 
 4. Iterate the map to display all countries and their capitals, one per line, in the following format: "The capital of Belgium is Brussels".
 
