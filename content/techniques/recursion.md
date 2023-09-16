@@ -1,6 +1,6 @@
 ## Recursion
 
-Recursion is the technique of making a function call itself. It is a way to break down a problem into smaller and easier problems, until the problem becomes trivial. A function (or a procedure) that goes through recursion is said to be _recursive_.
+Recursion is the technique of **making a function call itself**. It is a way to break down a problem into smaller and easier problems, until the problem becomes trivial. A function (or a procedure) that goes through recursion is said to be _recursive_.
 
 The canonical use case for teaching recursion is the calculation of factorial.
 

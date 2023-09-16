@@ -12,7 +12,7 @@ The communication can be uni- or bi-directional. Assuming `T` is the data type o
 
 ### Fake web crawler
 
-Let's implement a fake version of the web crawler we mentionned earlier. We first make a channel called `pages`. It will be used by our two workers. We shall separate fetching from parsing a page. The program terminates when the user presses Enter. `fetch` and `parse` are invoked as goroutines with `go`.
+Let's implement a fake version of the web crawler we mentionned earlier. We first make a channel called `pages`. It will be used by our two workers. We shall separate fetching from parsing a page. The program terminates when the user presses Enter. `fetch()` and `parse()` are invoked as goroutines (with `go`).
 
 We pass the channel as a parameter. Notice the slight difference in declaration:
 
