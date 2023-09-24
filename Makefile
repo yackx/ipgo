@@ -20,9 +20,6 @@ epub:
 		--listings \
 		-o build/ipgo.epub
 
-pandoc-version:
-	@$(PANDOC) -v
-
 cover-pdf:
 # 	Imagemagick converter
 	convert cover.png -quality 100 cover.pdf
