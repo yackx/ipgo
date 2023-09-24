@@ -6,6 +6,9 @@ author:
 - Youri Ackx
 lang: en-US
 
+geometry:
+- paper=a4paper
+
 # not available with Leanpub free plan
 # geometry: paperheight=9.25in,paperwidth=7.25in
 # US Legal format is still nice though
