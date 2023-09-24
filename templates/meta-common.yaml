@@ -1,7 +1,7 @@
 ---
 title: Introduction to Programming with Go
 subtitle: Learn data structures and algorithms with Go
-date: "13 Apr. 2023 (preview)"
+date: "23 September. 2023 (preview)"
 author:
 - Youri Ackx
 lang: en-US
@@ -32,7 +32,7 @@ toc-own-page: true
 # Unknown: how to re-user variables
 header-left: Introduction to Programming with Go
 header-right: Youri Ackx
-footer-left: "Preview - 13 Apr. 2023"
+footer-left: "Preview - 23 Sept. 2023"
 # footer-right: p age
 
 # book: true
