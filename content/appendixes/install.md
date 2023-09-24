@@ -17,11 +17,11 @@ On macOS, consider using Homebrew.
 
 https://formulae.brew.sh/formula/go
 
+On GNU/Linux, a recent version may be available in the software repository, depending on the distribution.
+
 ### Edit
 
-For this book, any decent editor will do.
-
-Visual Studio Code is recommanded on all platforms.
+For this book, any decent editor will do. Visual Studio Code is recommanded on all platforms. `vim` or `emacs` are find choices. Jetbrains Goland is very convenient.
 
 https://code.visualstudio.com/
 
@@ -49,17 +49,15 @@ Hello, world!
 ```
 ### Modules
 
-In some chapters, we make the code more modular by using modules.
+In some chapters, Go modules are used. See for instance \ref{stack} Stack.
 
-A good example is found in the ch. \ref{stack} Stack. You don't need to understand the details of the code if you just began reading this book.
+In the following example, we have:
 
-In this example, we have:
-
-- a module file `go.mod`
-- a stack implementation in `package stack`
+- a module file `go.mod`.
+- a stack implementation in `package stack`.
 - a demo in `package main`.
 
-From a directory of your choosing, the file structure is:
+From a directory of your choosing, the directory and file structure is:
 
 ```
 +-- ipgo
@@ -73,54 +71,16 @@ From a directory of your choosing, the file structure is:
 First, create a module:
 
 ```bash
-$ go mod init be.sugoi.ipgo
+$ go mod init local.myname
 ```
 
 Go will create the following file:
 
 ```bash
 $ cat go.mod
-module be.sugoi.ipgo
+module local.myname
 
-go 1.20
+go 1.21
 ```
 
-I chose `be.sugoi.ipgo` because it matches this book's namespace, but you can choose whatever you like.
-
-The stack:
-
-```go
-// stack.go
-
-package stack
-
-type Stack[T any] []T
-
-func New[T any]() *Stack[T] {
-	return &Stack[T]{}
-}
-
-func (s *Stack[T]) Len() int {
-	return len(*s)
-}
-
-// rest of the code omitted
-```
-
-The demo:
-
-```go
-// main.go
-
-package main
-
-import (
-	"fmt"
-	"be.sugoi.ipgo/stack"
-)
-
-func main() {
-	s := stack.New[int]()
-	fmt.Println(s.Len()) // 0
-}
-```
+Replace `local.myname` by your own namespace.
