@@ -4,7 +4,7 @@
 
 ### Presentation
 
-The Game of Life[^game-of-life] is a cellular automaton devised by John Horton Conway[^conway] in 1970. It is a zero-player game, meaning that its evolution is determined by its initial state (*seed*), requiring no further input. One interacts with the game by creating an initial configuration and observing how it evolves. It is Turing complete[^turing-complete].
+The Game of Life[^game-of-life] is a cellular automaton devised by John Horton Conway[^conway] in 1970. It is a zero-player game, meaning that its evolution is determined by its initial state (*seed*), requiring no further input. One interacts with the game by creating an initial configuration and observing how it evolves. The game is Turing complete[^turing-complete].
 
 [^game-of-life]: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 [^conway]: https://en.wikipedia.org/wiki/John_Horton_Conway
@@ -23,8 +23,8 @@ The simulation evolves on an infinite, two-dimensional grid of cells, each of wh
 
 This simple set of rules can lead to remarkable patterns. Common patterns include:
 
-- **Oscillators** -- return to their initial state after a finite number of generations called **periods** (_blinker_, _toad_, _beacon_, _pulsar_) ;
-- **Still lifes** -- remain unchanged from one generation to the next (_block_, _beehive_, _loaf_, _boat_, _tub_) ;
+- **Oscillators** -- return to their initial state after a finite number of generations called **periods** (_blinker_, _toad_, _beacon_, _pulsar_).
+- **Still lifes** -- remain unchanged from one generation to the next (_block_, _beehive_, _loaf_, _boat_, _tub_).
 - **Spaceships** -- travel accross the grid (_glider_ and other spaceships).
 
 ![Beehive, one form of still life](content/classic/conway/beehive.png)
@@ -33,7 +33,7 @@ Decades after Conway released his game, a self-replicating pattern called _Gemin
 
 ### Data structure
 
-Some implementations use a two-dimensional array-like structures, for instace ``[][]bool`` to represent the grid. This is however inefficient and not practical. It cannot represent an infinite grid and can be a huge waste of memory on large grids. Instead, we represent a **cell** as pair of integers, and the **grid** as a set of cells. We shall use a `map[Cell]bool` to represent the grid.
+Some implementations use a two-dimensional array-like structures, for instance ``[][]bool`` to represent the grid. This is however inefficient and not practical. Such data structure cannot represent an infinite grid and wastes a lot of memory on large grids. Instead, we represent a **cell** as a pair of integers, and the **grid** as a set of cells. We shall use a `map[Cell]bool` strcture called `CellSet` to represent the grid or a cell's neighbor.
 
 ```go
 // Cell represents a cell, living or dead
@@ -50,8 +50,8 @@ type CellSet struct {
 
 Let's add:
 
-- A `String()` method to display a cell in a human-readable format ;
-- An empty grid constructor ;
+- A `String()` method to display a cell in a human-readable format.
+- An empty grid constructor.
 - A cell-based grid constructor.
 
 ```go
@@ -84,7 +84,7 @@ func (cs *CellSet) String() string {
 
 ### Implementation
 
-Go does not offer a built-in type for set, so we need to bring our own helper functions like ``Add``, ``Contains`` or ``Intersect`` to the table.
+Go does not offer a built-in type for set, so we need to bring our own helper functions to the table.
 
 ```go
 func (cs *CellSet) Add(cell Cell) {
@@ -108,16 +108,20 @@ func (cs *CellSet) Intersect(other *CellSet) *CellSet {
 	return intersect
 }
 
+func (cs *CellSet) Len() int {
+	return len(cs.Cells())
+}
+```
+
+``Cells()`` returns the cells from a ``CellSet``.
+
+```go
 func (cs *CellSet) Cells() []Cell {
 	var cells []Cell
 	for cell := range cs.cells {
 		cells = append(cells, Cell{cell.X, cell.Y})
 	}
 	return cells
-}
-
-func (cs *CellSet) Len() int {
-	return len(cs.Cells())
 }
 ```
 
@@ -138,7 +142,7 @@ func neighbours(cell *Cell) *CellSet {
 }
 ```
 
-Lastly, `Next()` allows to transition from one state to the next. We first check if a cell survive to the next generation according to the rules. Then we examine all neighbor cells to determine if a new cell will appear (it must have 3 neighbors so the possible newborns always come next to living cell).
+Lastly, `Next()` allows to transition from one state to the next. We first check if a cell survives to the next generation according to the rules. Then we examine all neighbor cells to determine if a new cell will appear (it must have 3 neighbors so the possible newborns always come next to a living cell).
 
 If the function returns an empty grid, we have reached a terminal state.
 
@@ -183,7 +187,7 @@ Create a `main()` method to run the simulation with different input, for instanc
 
 - Trival case: an empty grid that remains empty.
 - A single cell that dies after the first generation.
-- A beehive (still life) that remains unchanged, no matter how many times you call the next generation.
+- A beehive (still life) that remains unchanged, no matter the number of generations.
 - A blinker of period 2.
 
 For example:

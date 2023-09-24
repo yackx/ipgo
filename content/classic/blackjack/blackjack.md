@@ -1,5 +1,6 @@
 ## Blackjack (guided exercise)
 
+This is a guide exercise. We will explain the rules, suggest an algorithm, and you will take care of the implementation.
 ### Rules
 
 Blackjack is a casino banking game. We will play a simplified version of the game: single player, single deck of cards, no bets, no hole card.
@@ -22,17 +23,17 @@ The dealer's decision process is simple: if their total is below the player's, t
 
 Make sure you have completed the Hangman chapter before starting this exercise. You first task is to decompose the problem in smaller, manageable chuncks. The main design ideas are identical or very similar.
 
-- Accept player's input when it's their turn
-- Validate it
-- Perform dealer's logic
-- Keep track of the score
-- Detect a bust
-- Detect the end of the hand
-- Compute total
-- Handle aces (1 or 11)
+- Accept player's input when it's their turn.
+- Validate it.
+- Perform dealer's logic.
+- Keep track of the score.
+- Detect a bust.
+- Detect the end of the hand.
+- Compute total.
+- Handle aces (1 or 11).
 - ...
 
-The game runs indefinitely. It is an endless loop. You can allow the player to enter `'q'` to quit the game at any time. Inside that loop live **nested loops** running for each hand, handling the player's and the dealer's decisions.
+The game runs indefinitely. It is an endless loop. We can allow the player to enter `'q'` to quit the game at any time. Inside that loop live **nested loops** running for each hand, handling the player's and the dealer's decisions.
 
 Here is a simple suggested algoirthm, where the deck is shuffled before each hand (rather than after 7 hands).
 
@@ -56,7 +57,7 @@ while not quit {
 display scores
 ```
 
-To make your life easier, you ignore the aces double value in your first version, counting them as 11.
+To make our life easier, we will ignore the aces double value in your first version, counting them as 11.
 
 Good luck!
 

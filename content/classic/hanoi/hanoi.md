@@ -4,7 +4,7 @@
 
 ### Presentation
 
-The Tower of Hanoi[^hanoi] is a mathematical game or puzzle consisting of three rods (or sticks) and a number of disks (or pegs) of different diameters, which can slide onto any rod. The puzzle starts with the disks stacked on one rod in order of decreasing size, the smallest at the top.
+The Tower of Hanoi[^hanoi] is a mathematical game or puzzle consisting of three _rods_ (or _sticks_) and a number of _disks_ (or _pegs_) of different diameters, which can slide onto any rod. The puzzle starts with the disks stacked on one rod in order of decreasing size, the smallest at the top.
 
 [^hanoi]: https://en.wikipedia.org/wiki/Tower_of_Hanoi
 
@@ -30,7 +30,7 @@ The minimal number of moves required to solve a Tower of Hanoi puzzle is $2^n âˆ
 
 ### Recursive method
 
-If we only display the moves and not the rods successive states, we do not even need a data structure to represent the rods and the disks. This solution is straightforward, at the cost of testability.
+If we only display the moves and not the rods successive states, we do not need a data structure to represent the rods and the disks. This solution is straightforward, at the cost of testability.
 
 To $solve(n, A, B, C)$ for $n$ disks using pegs $A$ (**source**), $B$ (**auxiliary**) and $C$ (**destination**) with $n>0$:
 
@@ -38,9 +38,7 @@ To $solve(n, A, B, C)$ for $n$ disks using pegs $A$ (**source**), $B$ (**auxilia
 2. $move(A, C)$
 3. $solve(n-1, B, A, C)$
 
-To phrase it in a more casual form, say you are asked to solve for $n$ pegs, but you don't know how to do it. But you know a friend that can solve it for $n-1$. How? That's none of your concern, but it turns out that your friend delegates for $n-2$ to yet another person, and so on. Eventually, there's that special someone that can solve it for $n=1$. It is a trivial case: they must simply move the top peg.
-
-So to solve for $(n, A, B, C)$, you call your friend to solve for $(n-1, A, C, B)$. Then you call the special someone to move the top peg from $A$ to $C$. You call your friend again, this time to solve $(n-1, B, A, C)$.
+In the chapter on recursion, we saw that we need a terminal condition. When $n=0$, there is nothing left to do.
 
 ```go
 func solve(n int, source, auxiliary, destination string) {
@@ -61,7 +59,7 @@ And that's it! Problem solved, no sweat.
 
 ### Iterative method
 
-The iterative approach is much more involved than the recursive one. It requires to create a type `Tower`. Each rod is an `[]int` labelled by a string.
+The iterative approach is more involved than the recursive one. We declare a type `Tower`. Each rod is an `[]int` labelled by a string.
 
 ```go
 type Tower struct {
@@ -90,7 +88,7 @@ func NewTower(n int) *Tower {
 }
 ```
 
-We will need to `swap` disks "smartly", depending on the rod's configuration.
+We will need to `swap` disks "smartly", depending on the rod's configuration. Swapping $x$ and $y$ implies to move either $x$ to $y$ or $y$ to $x$. Only one move is legal as one disk is always larger than the other.
 
 ```go
 func (tower *Tower) swap(x, y string) {
@@ -147,21 +145,21 @@ At last, to put it all together, we have two sets of rules:
 
 For an even number of disks:
 
-2. Make the legal move between rods $A$ and $C$ (in either direction),
-1. Make the legal move between rods $A$ and $B$ (in either direction),
-3. Make the legal move between rods $B$ and $C$ (in either direction),
+1. Make the legal move between rods $A$ and $C$ (in either direction).
+2. Make the legal move between rods $A$ and $B$ (in either direction).
+3. Make the legal move between rods $B$ and $C$ (in either direction).
 
 For an odd number of disks:
 
-1. make the legal move between rods $A$ and $C$ (in either direction),
-2. make the legal move between rods $A$ and $B$ (in either direction),
-3. make the legal move between rods $B$ and $C$ (in either direction),
+1. make the legal move between rods $A$ and $C$ (in either direction).
+2. make the legal move between rods $A$ and $B$ (in either direction).
+3. make the legal move between rods $B$ and $C$ (in either direction).
 
 Repeat the steps until complete.
 
 The part "in either direction" explains why we designed a generic function `swap()` that is able to `move(x, y)` or `move(y, x)`.
 
-We can now solve according to our algorithm above.
+We can now solve according to our algorithm.
 
 ```go
 func (tower *Tower) solve() {
@@ -183,7 +181,7 @@ func (tower *Tower) solve() {
 }
 ```
 
-The implementation requires us to retain the tower's state after each step. A `main` function will help our algorithm come to life.
+This `main()` function will make our algorithm come to life.
 
 ```go
 func main() {

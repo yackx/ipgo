@@ -4,7 +4,7 @@
 
 ### The game
 
-In this classic game, one person picks a random word, and another attempts to guess it. Each letter of the word to guess is hidden and replaced by a dash. At each turn, the guessing player suggests a letter. If it occurs in the word, the other player writes it at the correct position. If the letter does not occur in the word, the other player draws one limb of a hanged man stick figure on a gallow. The guessing player wins if they find out out the word before the hangman is drawn. The other player wins otherwise.
+In this classic game, one player picks a random word, and the other player attempts to guess it. Each letter of the word to guess is hidden and replaced by a dash. At each turn, the guessing player suggests a letter. If it occurs in the word, the other player writes it at the correct position. If the letter does not occur in the word, the other player draws one limb of a hanged man stick figure on a gallow. The guessing player wins if they find out the word before the hangman is drawn. The other player wins otherwise.
 
 There are many variations of the game ; we will stick to a simple one. In our implementation:
 
@@ -19,7 +19,7 @@ There are many variations of the game ; we will stick to a simple one. In our im
 
 ### Building blocks
 
-The game is straightforward to implement with the basic programming elements we have described so far. There is no complex algorithm or data structure involved. Our first step is to decompose the game in building blocks we can eventually assemble:
+The game is straightforward to implement with the basic programming blocks described so far. There is no complex algorithm or data structure involved. Our first step is to decompose the game in smaller tasks we can eventually assemble:
 
 - Pick a random word from a dictionary
 - Ask player for their guess
@@ -33,7 +33,7 @@ Even though the entire task may be daunting, each individual function is simple 
 
 ### Pick a random word
 
-We will pick a random word from a dictionary stored as a file, *one word per line*. We will read and store the dictionary in memory in order to choose a random entry. This simple approach is not memory-efficient, but even thousands of words should not cause performance concerns on a modern machine.
+We will pick a random word from a dictionary stored as a file, *one word per line*. We will read and store the dictionary in memory in order to choose a random entry. This approach is not memory-efficient, but even thousands of words should not cause performance concerns on a modern machine.
 
 > _Note_: There is no such thing as a ``len(file)`` function that would return the number of lines in the file without reading it. This is not a Go specific limitation. From the operating system point of view, a file is made of bytes and there is no concept of "lines" or "words". The linebreak is just a byte (or two bytes), like any other. We cannot know how many "lines" the file contains without reading it entirely.
 
@@ -41,7 +41,7 @@ A different approach would be to first count the number of words in the file (by
 
 A more effcient but also fairly involved technique would improve the first scanning phase by reading large chuncks of bytes, rather than relying on the slower `scanner.Scan()` and `scanner.Text()` to read lines that will will use.
 
-These improvements are however beyond the scope of our little program.
+These optimizations are however beyond the scope of our little program.
 
 Here is a simple implementation to read a dictionary.
 
@@ -68,7 +68,7 @@ func randomWord(path string) string {
 
 ### Ask player's guess
 
-We leniently read from the standard input, ignoring errors. Don't make a habit of ignoring errors. It is fine in a toy program, but not adequate for a production system. Incorrect input tolerance and error handling can take a fair amount of work, so we will that aside.
+We leniently read from the standard input, ignoring errors. Incorrect input handling and error handling can take a fair amount of work. Don't make a habit of ignoring errors. It is fine in a toy program, but not adequate for a production system.
 
 We then check that the input length is ``1``, that it is a letter, and convert it to upper case.
 
@@ -93,7 +93,7 @@ func askGuess() string {
 }
 ```
 
-Notice the endless ``for`` loop. In structured programming, one would declare a stop condition on the iteration. Arguably the extra variable and nesting in conditional statements would not improve readability. Idiomatic Go favors explicit exits via ``break`` (or in this case ``continue``). The function ``askGuess`` is short, so there is no risk of confusion when reading the code flow.
+Notice the endless ``for`` loop. In structured programming, one would declare a stop condition on the iteration. Arguably the extra variable and nesting in conditional statements would not improve readability. Go favors explicit exits via ``break`` (or in this case ``continue``). The function ``askGuess`` is short, so there is no risk of readability issues.
 
 ### Game state
 
@@ -109,7 +109,7 @@ type Hangman struct {
 }
 ```
 
-The `Limb` will be an enumeration. In idomatic Go, enums are composed of:
+The `Limb` will be an enumeration. In Go, enums are composed of:
 
 1. A custom type declaration
 2. Several constants with ``iota``
@@ -139,7 +139,7 @@ We have included a fake limb called `Empty` to treat the starting point of the g
 
 ### Start the game
 
-When starting the game, we instantiate a consistent `Hangman` by performing the following actions:
+When starting the game, a `Hangman` is created by performing the following actions:
 
 - Pick a random `secret` word, using the function we declared above
 - Initialize the `guesses` to an empty slice
@@ -157,7 +157,7 @@ func newHangman() *Hangman {
 }
 ```
 
-The pseudo-random generator must also be intitialized. It has to be done once in the program, no matter how many games are played. Initiliazation has been therefore kept out of `newHangman`.
+The pseudo-random generator must also be intitialized. It has to be done once in the program, no matter how many games are played. Initiliazation has been therefore kept out of `newHangman()`.
 
 ```go
 func initGame() {
@@ -198,7 +198,7 @@ func (h *Hangman) guess(letter string) {
 
 ### Display the game state
 
-You are free to go as fancy as you want for the display. We will opt for the utmost sobriety.
+The reader is free to be creative for the text interface and the hangman representation. We will opt for the utmost sobriety.
 
 ```go
 func (h *Hangman) draw() {
@@ -212,11 +212,11 @@ Admitedly, calling this function `draw()` may be an overstatement since it merel
 ----E----E [A E P] Torso
 ```
 
-> *Note:* Displaying a gallow and an actual stickman will require more lines of code of their own than the complete implementation presented here. There is nothing wrong with that ; we simply prefer to keep things simple.
+> *Note:* Displaying a gallow and an actual stickman will require more lines of code on their own than the complete implementation presented here. There is nothing wrong with that fact; we simply prefer to keep things simple.
 
 ### Check game over
 
-The guessing player wins if the `word` matches the `secret`. They loose if the `limb` is the last one. Give them the courtesy to reveal the secret in that case. If neither `won()` or `lost()` are `true`, the game goes on!
+The guessing player wins if the `word` matches the `secret`. They lose if the `limb` is the last one. Give them the courtesy to reveal the secret in that case. If neither `won()` or `lost()` are `true`, the game goes on!
 
 ```go
 // Check if player won
