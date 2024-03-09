@@ -25,7 +25,7 @@ titlepage: true
 # Front page not taken into account
 # https://github.com/Wandmalfarbe/pandoc-latex-template/issues/260
 # but it triggers the proper tikz incantation
-# so we kee pit
+# so we keep it
 titlepage-background: content/cover.png
 
 titlepage-rule-color: "00ADD8"
