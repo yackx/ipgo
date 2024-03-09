@@ -1,7 +1,6 @@
----
 title: Introduction to Programming with Go
 subtitle: Learn algorithms and datastructures using golang
-date: "23 September. 2023 (preview)"
+date: "9 March 2023 edition"
 author:
 - Youri Ackx
 lang: en-US
@@ -35,8 +34,8 @@ toc-own-page: true
 # Unknown: how to re-user variables
 header-left: Introduction to Programming with Go
 header-right: Youri Ackx
-footer-left: "Preview - 23 Sept. 2023"
-# footer-right: p age
+footer-left: "9 March 2023"
+# footer-right: page
 
 # book: true
 listings-disable-line-numbers: true
@@ -53,5 +52,4 @@ listings-disable-line-numbers: true
 
 keywords: [golang, programming, algorithms]
 abstract: |
-      This book is about computer programming and algorithms, without the formal academic approach. Learn about recursion, complexity, data structures, and solve classical computer science problems like the Towers of Hanoi, the Eight Queens and Conway's Game Of Life.
-...
+  This book is about computer programming and algorithms, without the formal academic approach. Learn about recursion, complexity, data structures, and solve classical computer science problems like the Towers of Hanoi, the Eight Queens and Conway's Game Of Life.
