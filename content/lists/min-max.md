@@ -1,6 +1,6 @@
 ## Min and max
 
-Finding the maximum of slice is a form of filter, one that yields a single element. In order to find the greatest element of a slice, we first initialize `max` as the first element of the slice, as it is our sole candidate when we start.
+In order to find the greatest element of a slice, we first initialize `max` as the first element of the slice, as it is our sole candidate when we start.
 
 ```
 12   34   6   13
