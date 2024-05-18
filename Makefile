@@ -1,4 +1,4 @@
-PANDOC=pandoc
+PANDOC ?= pandoc
 
 default: pdf
 
