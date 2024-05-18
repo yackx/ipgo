@@ -1,6 +1,6 @@
 title: Introduction to Programming with Go
 subtitle: Learn algorithms and datastructures using golang
-date: "9 March 2023 edition"
+date: "9 March 2024"
 author:
 - Youri Ackx
 lang: en-US
@@ -34,7 +34,7 @@ toc-own-page: true
 # Unknown: how to re-user variables
 header-left: Introduction to Programming with Go
 header-right: Youri Ackx
-footer-left: "9 March 2023"
+footer-left: "9 March 2024"
 # footer-right: page
 
 # book: true

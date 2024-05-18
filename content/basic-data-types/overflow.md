@@ -18,7 +18,7 @@ func main() {
 4
 ```
 
-Why is the result equal to $4$? Remember that `uint8` can hold values from $0$ to $255$. We are trying to add $10$ to $250$. The resulting $260$ exceeds the capacity of `uint8`. When computing, Go reaches $255$ and wraps back to $0$, hence a result of $4$. This can be shown with the following binary addition. It works like a decimal addition, with carry, only with 2 digits. As you can see, the result has a 9th bit on the left that won't fit in `uint8`. Because the data type can only hold 8 bits, the 9th bit is dropped, resutling in `00000100`` or $4$.
+Why is the result equal to $4$? Remember that `uint8` can hold values from $0$ to $255$. We are trying to add $10$ to $250$. The resulting $260$ exceeds the capacity of `uint8`. When computing, Go reaches $255$ and wraps back to $0$, hence a result of $4$. This can be shown with the following binary addition. It works like a decimal addition, with carry, only with 2 digits. As you can see, the result has a 9th bit on the left that won't fit in `uint8`. Because the data type can only hold 8 bits, the 9th bit is dropped, resulting in `00000100`` or $4$.
 
 ```
     --uint8--
