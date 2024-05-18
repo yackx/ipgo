@@ -1,6 +1,7 @@
 ## Blackjack (guided exercise)
 
 This is a guide exercise. We will explain the rules, suggest an algorithm, and you will take care of the implementation.
+
 ### Rules
 
 Blackjack is a casino banking game. We will play a simplified version of the game: single player, single deck of cards, no bets, no hole card.
