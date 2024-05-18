@@ -22,7 +22,7 @@ fruits = append(fruits, "cherry")
 // fruits[3] == "cherry"
 ```
 
-Resutling in a slice of 4 elements, of which the three first remain empty.
+Resulting in a slice of 4 elements, of which the three first remain empty.
 
 \begin{center}
 \begin{tikzpicture}
