@@ -34,7 +34,7 @@ Make sure you have completed the Hangman chapter before starting this exercise. 
 - Handle aces (1 or 11).
 - ...
 
-The game runs indefinitely. It is an endless loop. We can allow the player to enter `'q'` to quit the game at any time. Inside that loop live **nested loops** running for each hand, handling the player's and the dealer's decisions.
+The game runs indefinitely in an endless loop. We can allow the player to enter `'q'` to quit the game at any time. Inside that loop live **nested loops** running for each hand, handling the player's and the dealer's decisions.
 
 Here is a simple suggested algorithm, where the deck is shuffled before each hand (rather than after 7 hands).
 
