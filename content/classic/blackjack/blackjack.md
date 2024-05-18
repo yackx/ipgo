@@ -58,7 +58,7 @@ while not quit {
 display scores
 ```
 
-To make our life easier, we will ignore the aces double value in your first version, counting them as 11.
+To make our life easier, we will ignore the aces double value in the first version, counting them as 11.
 
 Good luck!
 
