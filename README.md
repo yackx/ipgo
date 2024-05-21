@@ -2,7 +2,10 @@
 
 **Introduction to Programming with Golang**
 
-_Learn programming, algorithms and data structures using the Go programming language_
+_This book is about computer programming and algorithms, without the formal
+academic approach. Learn about recursion, complexity, data structures, and solve
+classical computer science problems like the Towers of Hanoi, the Eight Queens and
+Conway’s Game Of Life._
 
 <img src="https://raw.githubusercontent.com/yackx/ipgo/main/content/cover.png" width="260">
 
