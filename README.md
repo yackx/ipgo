@@ -12,16 +12,14 @@ Download the [latest release](https://github.com/yackx/ipgo/releases)
 
 ## Build
 
-This book is written using markdown with tikz extension. It is converted by pandoc to .pdf or .epub using a LateX template.
+This book is written in markdown with tikz extension. It is converted by pandoc to .pdf or .epub using a LateX template.
 
-You need to have Docker installed with [yackx/pandoc-docker](https://github.com/yackx/pandoc-docker) to run the [Makefile]().
+You need [pandoc](https://pandoc.org/) to run the [Makefile](). [This Docker image](https://github.com/yackx/pandoc-docker)  can make pandoc installation easier. Then run:
 
 ```bash
 make pdf
 make epub
 ```
-
-Docker is used for cross-platform convenience. Alternatively, you can adjust the Makefile to run pandoc directly.
 
 ## License
 
