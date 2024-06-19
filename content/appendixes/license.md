@@ -1,7 +1,8 @@
 \newpage
 ## License
 
-This book is licensed under Creative Commons CC BY-NC-SA 4.0 License. Attribution to Youri Ackx based on the work at https://github.com/yackx/ipgo/.
+This book is licensed under Creative Commons CC BY-NC-SA 4.0 License. \
+Attribution to Youri Ackx based on the work at https://github.com/yackx/ipgo/.
 
 ### Summary
 
