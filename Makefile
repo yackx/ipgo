@@ -22,7 +22,7 @@ epub:
 
 cover-pdf:
 # 	Imagemagick converter
-	convert cover.png -quality 100 cover.pdf
+	convert content/cover-bw.png -quality 100 content/cover-bw.pdf
 
 clean:
 	@echo 'Cleaning build directory'

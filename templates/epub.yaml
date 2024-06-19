@@ -2,7 +2,7 @@ from: markdown+multiline_tables
 to: epub
 output-file: ipgo.epub
 
-epub-cover-image: "content/cover.png"
+epub-cover-image: "content/cover-bw.png"
 
 metadata-files:
 - templates/meta-common.yaml
