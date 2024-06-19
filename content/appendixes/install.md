@@ -21,7 +21,7 @@ On GNU/Linux, a recent version may be available in the software repository, depe
 
 ### Edit
 
-For this book, any decent editor will do. Visual Studio Code is recommended on all platforms. `vim` or `emacs` are find choices. Jetbrains Goland is very convenient.
+To run the code found this book, any decent editor will do. Visual Studio Code is recommended on all platforms. `vim` or `emacs` are find choices. Jetbrains Goland is very convenient.
 
 https://code.visualstudio.com/
 
@@ -47,6 +47,7 @@ Run with `go run`:
 $ go run main.go
 Hello, world!
 ```
+
 ### Modules
 
 In some chapters, Go modules are used. See for instance \ref{stack} Stack.
