@@ -21,7 +21,7 @@ On GNU/Linux, a recent version may be available in the software repository, depe
 
 ### Edit
 
-For this book, any decent editor will do. Visual Studio Code is recommanded on all platforms. `vim` or `emacs` are find choices. Jetbrains Goland is very convenient.
+For this book, any decent editor will do. Visual Studio Code is recommended on all platforms. `vim` or `emacs` are find choices. Jetbrains Goland is very convenient.
 
 https://code.visualstudio.com/
 
