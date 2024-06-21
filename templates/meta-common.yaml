@@ -34,7 +34,7 @@ toc-own-page: true
 # Unknown: how to re-user variables
 header-left: Introduction to Programming with Go
 header-right: Youri Ackx
-footer-left: "9 March 2024"
+# footer-left: "9 March 2024"
 # footer-right: page
 
 # book: true
