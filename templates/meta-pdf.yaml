@@ -1,9 +1,8 @@
----
 # not available with Leanpub free plan
 # geometry: paperheight=9.25in,paperwidth=7.25in
 # US Legal format is still nice though
+# - paper=letterpaper
 geometry:
-- paper=letterpaper
+- paper=a4paper
 
 output: pdf_document
-...
