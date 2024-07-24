@@ -40,7 +40,7 @@ Notoriously, on June 4th, 1996, an [Ariane 5 rocket bursted into flames 39 secon
 
 [^overflow-1]: https://en.wikipedia.org/wiki/Cluster_(spacecraft)#Launch_failure
 
-![Ariane explosion was caused by buffer overflow](content/basic-data-types/ariane-501-explosion.jpg){ width=192px }
+![Ariane explosion was caused by a buffer overflow](content/basic-data-types/ariane-501-explosion.jpg){ width=192px }
 
 Sometimes, the result is less harmful. In 2014, [a popular video clip caused the Youtube view counter to overflow](https://arstechnica.com/information-technology/2014/12/gangnam-style-overflows-int_max-forces-youtube-to-go-64-bit/)[^overflow-2], forcing Google to switch from 32 to 64 bits integer. A number of views greater than 2 billions had not been anticipated.
 
