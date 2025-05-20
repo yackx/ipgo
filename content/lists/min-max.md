@@ -71,10 +71,19 @@ Lastly, Go 1.21 introduces `min` and `max` built-ins, turning our `maxGeneric` f
 fmt.Println(max(12, 34, 6, 13))
 ```
 
-Unfortunately, they are not variadic.
+These built-ins do not work with arrays or slices however.
 
 ```go
 a := []int{12, 34, 6, 13}
-fmt.Println(max(a))
-// invalid argument: a (variable of type []int) cannot be ordered
+fmt.Println(slices.Max(a))
+// ./prog.go:10:18: invalid argument: a (variable of type []int) cannot be ordered
+```
+
+To find the minimum or the maximum in an array or in a slice, use the `slices` package.
+
+```go
+import "slices"
+
+a := []int{12, 34, 6, 13}
+fmt.Println(slices.Max(a))
 ```
