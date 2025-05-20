@@ -20,8 +20,8 @@ Go includes a package that implements a stack[^go-stack]. It uses an optimized `
 
 As an exercise, we can implement a simple stack. We will:
 
-- use a slice to store the values in the collection
-- use a generic type `T` (rather than the legacy `interface{}` in the Go library)
+- use a slice to store the values in the collection.
+- use a generic type `T`.
 - attach all functions will operate on a `*Stack[T]`.
 
 This translates to:

@@ -127,11 +127,11 @@ fmt.Printf("(%v, %T)\n", i, i)
 
 Prints `(hello, string)` and, as you figured out, `i` is now a `string` and its value is `"hello"`.
 
-> _Note_: These code snippets are for demonstration purpose only. Their appearance in production code would be dubious.
-
-Empty interfaces are used by code that handles values of **unknown type**. For instance, the well-known `fmt.Println`[^println] takes any number of arguments of type `interface{}`. All that time, we have been using it intuitively. Now we can understand the mechanism that lies behind.
-
-[^println]: https://golang.org/pkg/fmt/#Println
+> _Notes_:
+> 
+> - These code snippets are for demonstration purpose only. Their appearance in production code would be dubious.
+> 
+> - Prior to Go 1.18, empty interfaces were used by code that handles values of **unknown type**. Nowadays, we use the more meaningful `any`.
 
 ### Exercices
 
