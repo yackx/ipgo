@@ -52,9 +52,9 @@ type Ordered interface {
 Our function becomes:
 
 ```go
-import "golang.org/x/exp/constraints"
+import "cmp"
 
-func maxGeneric[T constraints.Ordered](values []T) T {
+func maxGeneric[T cmp.Ordered](values []T) T {
 	max := values[0]
 	for _, i := range values {
 		if i > max {
@@ -65,7 +65,7 @@ func maxGeneric[T constraints.Ordered](values []T) T {
 }
 ```
 
-Lastly, Go 1.21 introduces `min` and `max` built-ins, making our function a pure exercise.
+Lastly, Go 1.21 introduces `min` and `max` built-ins, turning our `maxGeneric` function into a pure exercise.
 
 ```go
 fmt.Println(max(12, 34, 6, 13))
